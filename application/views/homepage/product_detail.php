@@ -16,11 +16,17 @@
                   <dd><?php echo $product[0]['brand_name']?></dd>
                   <dt>ราคา</dt>
                   <dd><?php echo number_format($product[0]['product_price'])?> บาท</dd>
+                  <dt>คงเหลือ</dt>
+                  <dd><?php echo number_format($product[0]['product_stock'])?> ชิ้น</dd>
                 </dl>
                 <hr>
 
                 <?php if (@$_SESSION['USER_ID'] != ''): ?>
+                  <?php if ($product[0]['product_stock'] <1): ?>
+                    <botton class="btn btn-danger" style="margin-left:5px;padding:5px;">สินค้าหมด</botton>
+                  <?php else: ?>
                 <a href="<?php echo SITE_URL('cart/insert/'.$product[0]['product_id']."/".$_SESSION['USER_ID'])?>" class="btn btn-success" style="margin-left:5px;padding:5px;">หยิบใส่ตะกร้า</a>
+                  <?php endif; ?>
                 <?php else: ?>
                 <div align="center" style="color:red;">เข้าสู่ระบบเพื่อสั่่งซื้อ</div>
                 <?php endif; ?>

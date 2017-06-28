@@ -27,6 +27,7 @@
               <td>
                 <?php echo form_open('cart/edit'); ?>
                 <input type="hidden" name="order_temp_id" value="<?php echo $row['order_temp_id']?>">
+                <input type="hidden" name="order_temp_product_id" value="<?php echo $row['order_temp_product_id']?>">
                 <input type="text" autocomplete="off" onchange="this.form.submit()" name="order_temp_amount" class="form-control" style="width:75px;" value="<?php echo $row['order_temp_amount']?>">
                 <?php echo form_close(); ?>
               </td>

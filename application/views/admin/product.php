@@ -10,8 +10,9 @@
               <tr class="info">
                 <th>#</th>
                 <th>ยี่ห้อ</th>
-                <th>ชื่อรุ่น</th>
+                <th width="40%">ชื่อรุ่น</th>
                 <th>ราคา</th>
+                <th>คงเหลือ</th>
                 <th>ตัวเลือก</th>
               </tr>
             </thead>
@@ -22,6 +23,11 @@
                 <td><?php echo $row['brand_name']?></td>
                 <td><?php echo $row['product_name']?></td>
                 <td><?php echo number_format($row['product_price'])?></td>
+                <?php if ($row['product_stock'] < 10): ?>
+                <td style="color:red"><?php echo number_format($row['product_stock'])?></td>
+                <?php else: ?>
+                <td><?php echo number_format($row['product_stock'])?></td>
+                <?php endif; ?>
                 <td>
                   <a href="<?php echo SITE_URL('admin/product/product_update/'.$row['product_id'])?>" class="btn btn-warning">แก้ไข</a>
                   <a href="<?php echo SITE_URL('admin/product/product_delete/'.$row['product_id'])?>" class="btn btn-danger" onClick="javascript:return confirm('คุณต้องการลบข้อมูลใช่หรือไม่');">X</a>

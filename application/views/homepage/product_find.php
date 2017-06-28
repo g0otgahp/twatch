@@ -16,7 +16,11 @@
                 <p style="font-size: 13px;">ยี่ห้อ : <?php echo $row['brand_name']?></p>
                 <a href="<?php echo SITE_URL('product/product_detail/'.$row['product_id'])?>" class="btn btn-default" style="margin-left:5px; padding:5px;">รายละเอียด</a>
                 <?php if (@$_SESSION['USER_ID'] != ''): ?>
+                  <?php if ($row['product_stock'] <1): ?>
+                    <botton class="btn btn-danger" style="margin-left:5px;padding:5px;">สินค้าหมด</botton>
+                  <?php else: ?>
                 <a href="<?php echo SITE_URL('cart/insert/'.$row['product_id']."/".$_SESSION['USER_ID'])?>" class="btn btn-success" style="margin-left:5px;padding:5px;">หยิบใส่ตะกร้า</a>
+                  <?php endif; ?>
                 <?php endif; ?>
               </div>
             </div>

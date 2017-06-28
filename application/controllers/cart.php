@@ -44,6 +44,7 @@ class cart extends CI_Controller {
     if ($input['order_temp_amount'] == 0) {
       $input['order_temp_amount'] = 1;
     }
+
     $this->order_model->Order_temp_update($input);
     redirect($_SERVER['HTTP_REFERER']);
   }

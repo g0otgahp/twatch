@@ -38,6 +38,15 @@
 
       <div class="form-group">
         <div class="col-md-3">
+          <label class="control-label">จำนวนคงเหลือ</label>
+        </div>
+        <div class="col-md-3">
+          <input required class="form-control" type="text" name="product_stock">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-3">
           <label class="control-label">รายละเอียด</label>
         </div>
         <div class="col-md-3">

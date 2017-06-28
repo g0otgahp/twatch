@@ -40,6 +40,22 @@ class order_model extends CI_Model {
 
   public function Order_Status($input)
   {
+    // echo "<pre>";
+    // print_r($input);
+    // exit();
+    if ($input['order_detail_status'] == 5) {
+      $data = $this->Get_Order($input['order_detail_id']);
+      foreach ($data['Order'] as $info) {
+        $product = $this->db
+        ->where('product_id',$info['product_id'])
+        ->get('product')->result_array();
+
+        $stock = $product[0]['product_stock'] - $info['order_amount'];
+        $input_stock = array('product_stock' => $stock );
+        $this->db->where('product_id',$info['product_id'])->update('product',$input_stock);
+      }
+    }
+
     $this->db->where('order_detail_id',$input['order_detail_id'])->update('order_detail',$input);
   }
 
@@ -82,6 +98,19 @@ class order_model extends CI_Model {
 
     public function Order_temp_update($input)
     {
+      $product = $this->db
+      ->where('product_id',$input['order_temp_product_id'])
+      ->get('product')->result_array();
+
+        if ($product[0]['product_stock'] < $input['order_temp_amount']) {
+          $url = $_SERVER['HTTP_REFERER'];
+          echo "<script>
+          alert('ของในสต๊อกไม่เพียงพอ');
+          window.location.href='$url';
+          </script>";
+          exit();
+        }
+
       $this->db->where('order_temp_id',$input['order_temp_id'])->update('order_temp',$input);
     }
 

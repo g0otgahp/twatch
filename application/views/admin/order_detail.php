@@ -43,6 +43,8 @@
                   <dd><?php echo $order['Order_detail'][0]['user_email']?></dd>
                 </dl>
                 <hr>
+                <?php if ($order['Order_detail'][0]['order_detail_status'] != 5 ): ?>
+                  <?php if ($order['Order_detail'][0]['order_detail_status'] != 0 ): ?>
                 <span align="center">
                 <h3>แก้ไขสถานะ</h3>
                 <?php echo form_open('admin/order/status')?>
@@ -60,6 +62,9 @@
                 <p><input class="form-control" type="hidden" name="order_detail_id" value="<?php echo $order['Order_detail'][0]['order_detail_id']?>"></p>
                 <?php echo form_close();?>
                 </span>
+              <?php endif; ?>
+              <?php endif; ?>
+
               </div>
             </div>
             <div class="row" style="font-size: 14px;">
