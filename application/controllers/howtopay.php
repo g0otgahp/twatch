@@ -13,10 +13,13 @@ class howtopay extends CI_Controller {
   public function index()
   {
     $Brand = $this->homepage_model->Get_Brand();
+    $General = $this->homepage_model->Get_General();
 
     $value = array(
       'Result' => array(
         'brand' => $Brand,
+        'general' => $General,
+
       ),
       'View' => 'homepage/howtopay',
     );
